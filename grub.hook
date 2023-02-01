@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Remove
+Operation = Upgrade
+Type = Package
+Target = grub
+
+[Action]
+Description = Re-generate Grub if Updated ...
+When = PostTransaction
+Depends = grub
+Exec = /usr/bin/sh -c 'grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && grub-mkconfig -o /boot/grub/grub.cfg'
